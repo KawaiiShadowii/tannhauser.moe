@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #E77471;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    color: white;
+}
+
+.content {
+    margin: 2vh 10vw 2vh 10vw;    
+}
+
+h1 {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {    
+    margin-bottom: 64px;
+}
+
+hr {
+    border: 3px dashed white;
+}
+
+.subtitle-seperator {
+    margin-bottom: 10px;
+}
+
+.center {
+    text-align: center; 
+    font-weight: bold;
+}
+
+.counter {
+    color: #574f84;
+    font-size: 2em;
+}
+
+.button-container {
+    text-align: center;
+    margin: 16px 0 64px 0;
+}
+
+.counter-button {
+    background-color: #574f84;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.counter-button:hover {
+    background-color: #2d2463;
+}
+
+.flexbox {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: calc(100% / 6 - 10px);
+    max-width: calc(100% / 6 - 10px);
+    padding: 0 5px 0 5px;
+}
+  
+.twitter-img {
+    margin-top: 10px;
+    vertical-align: middle;
+    width: 100%;
+    border-radius: 16px;
+}
+
+.footer {
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 15px 10vw;
+}
+
+@media screen and (max-width: 1920px) {
+    .column {
+      flex: calc(100% / 3 - 10px);
+      max-width: calc(100% / 3 - 10px);
+    }
+}
+
+@media screen and (max-width: 1512px) {
+    body {
+      font-size: 1.25em;
+    }
+
+    .subtitle-seperator {    
+        margin-top: 3px;
+        margin-bottom: 11px;
+    }
+}
+
+@media screen and (max-width: 1265px) {
+    body {
+      font-size: 1em;
+    }
+
+    .subtitle-seperator {    
+        margin-top: 6px;
+        margin-bottom: 12px;
+    }
+}
+
+@media screen and (max-width: 854px) {
+    .column {
+      flex: calc(50% - 10px);
+      max-width: calc(50% - 10px);
+    }
+}
+
+@media screen and (max-width: 510px) {
+    h1 {
+      font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 1.25em;
+    }
+
+    .subtitle-seperator {    
+        margin-top: 8px;
+        margin-bottom: 13px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    h1 {
+      font-size: 2em;
+    }
+
+    .subtitle-seperator {    
+        margin-top: 10px;
+    }
+}

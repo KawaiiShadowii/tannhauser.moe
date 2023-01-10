@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ei Ei Mun!</title>
+        <meta name="author" content="KevinVG207, Kawaii_Shadowii"/>
+        <meta name="description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
+        <meta name="keywords" content="uma,musume,uma musume,matikane,tannhäuser,matikane tannhäuser,tannhauser,matikane tannhauser,uma musume pretty derby,pretty,derby,pretty derby,ウマ娘,ウマ娘プリティーダービー,プリティーダービー,マチカネ,タンホイザ,マチカネタンホイザ"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
+        <meta property="og:title" content="Ei Ei Mun!"/>
+        <meta property="og:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
+        <meta property="og:type" content="website"/>
+        <!--<meta property="og:url" content="placeholder"/>-->
+        <!--<meta property="og:image" content="placeholder/TannhauserHappy.png"/>-->
+        <meta name="twitter:card" content="summary"/>
+        <meta name="twitter:title" content="Ei Ei Mun!"/>
+        <meta name="twitter:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
+        <!--<meta name="twitter:image" content="placeholder/TannhauserHappy.png"/>-->
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+        <!--<link rel="canonical" href="placeholder"/> -->
+    </head>
+    <body>
+        <div class="content">
+            <h1 class="title">Welcome to tannhauser.moe</h1>
+            <hr class="subtitle-seperator">
+            <h2 class="subtitle">The website for Matikane Tannhäuser, the cutest Uma Musume out there.</h2>
+            <p class="center">The mun~ has been squished</p>
+            <p class="counter center">0</p>
+            <p class="center">times</p>
+            <div class="button-container">
+                <button class="counter-button" onclick="counterClick()">Squish the mun~!</button>
+            </div>
+            <h2>Machitan Photo Gallery</h2>
+            <hr>
+            <div class="flexbox">
+                <noscript>Your browser does not support JavaScript or JavaScript has been disabled.<br>This website relies on JavaScript, so please enable it or use another browser.</noscript>
+            </div>
+        </div>
+        <div class="footer">
+            <p>If you have any suggestions in terms of features/images (including source), don't hesitate to contact me on Discord at <strong>Kawaii Shadowii#4571</strong></p>
+        </div>        
+        <script type="text/javascript">
+            var counter = 0;
+            var lastSecondCounter = 0;
+            var temporaryCounter = 0;
+
+            function counterClick() {
+                var counterElement = document.getElementsByClassName("counter")[0];                
+                lastSecondCounter += 1;
+                counterElement.textContent = (counter + lastSecondCounter + temporaryCounter).toLocaleString();
+
+                var random = Math.floor(Math.random() * 5) + 1;                
+                var audio = new Audio("mun".concat(random, ".mp3"));
+                audio.play();
+            }
+
+            function squishMuns() {
+                var counterElement = document.getElementsByClassName("counter")[0];
+                
+                var req = new XMLHttpRequest();
+                req.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        counter = data.muns;
+                        temporaryCounter = 0;
+                        counterElement.textContent = (counter + lastSecondCounter).toLocaleString();
+                    }
+                }
+
+                req.open("POST", "https://umapyoi.net/api/v1/mun");
+                req.setRequestHeader("Content-Type", "application/json");
+                var bodyString = JSON.stringify({"muns": lastSecondCounter})
+                temporaryCounter = lastSecondCounter;
+                lastSecondCounter = 0;
+                req.send(bodyString);
+
+                setTimeout(squishMuns, 1000)
+            }
+
+            function autorun() {
+                var audio = new Audio("ganbaru.mp3");
+                audio.play();
+                squishMuns();
+                loadImages();
+            }
+
+            function loadImages() {
+                var req = new XMLHttpRequest();
+                req.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var data = JSON.parse(this.responseText);
+                        data = data.sort(() => Math.random() - 0.5)
+                        
+                        var column1 = [];
+                        var column2 = [];
+                        var column3 = [];
+                        var column4 = [];
+                        var column5 = [];
+                        var column6 = [];
+
+                        for (let i = 0; i < data.length; i++) {
+                            var entry = data[i];
+                            var mod = i % 6;
+
+                            if (mod == 0) {
+                                column1.push(entry);
+                            } else if (mod == 1) {
+                                column2.push(entry);
+                            } else if (mod == 2) {
+                                column3.push(entry);
+                            } else if (mod == 3) {
+                                column4.push(entry);
+                            } else if (mod == 4) {
+                                column5.push(entry);
+                            } else if (mod == 5) {
+                                column6.push(entry);
+                            }
+                        }
+
+                        var columns = [column1, column2, column3, column4, column5, column6];
+
+                        columns.forEach(curr_column => {
+                            column = document.createElement("div");
+                            column.setAttribute("class", "column");
+                        
+                            curr_column.forEach(entry => {
+                                twitter_link = document.createElement("a");
+                                twitter_link.setAttribute("href", entry.link);
+                                twitter_link.setAttribute("target", "_blank");
+                                twitter_link.setAttribute("class", "twitter-link");
+
+                                twitter_img = document.createElement("img");
+                                twitter_img.setAttribute("src", entry.img);
+                                twitter_img.setAttribute("class", "twitter-img");
+                                twitter_img.setAttribute("alt", "");
+                                twitter_img.setAttribute("loading", "lazy");
+
+                                twitter_link.appendChild(twitter_img);
+                                column.appendChild(twitter_link);
+                            });
+
+                            var fb = document.getElementsByClassName("flexbox")[0];
+                            fb.appendChild(column);
+                        });
+                    }                                
+                }
+
+                req.open("GET", "images.json");
+                req.send();  
+            }
+
+            window.onload = autorun();
+        </script>
+    </body>
+</html>
