@@ -28,7 +28,10 @@ h2 {
 }
 
 hr {
-    border: 3px dashed white;
+    border-bottom: 6px dashed white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 .subtitle-seperator {
