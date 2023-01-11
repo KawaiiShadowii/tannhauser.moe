@@ -78,9 +78,8 @@ hr {
     flex-wrap: wrap;
 }
 
-.column {
-    flex: calc(100% / 6 - 10px);
-    max-width: calc(100% / 6 - 10px);
+.grid-item {
+    width: calc(100% / 6 - 10px);
     padding: 0 5px 0 5px;
 }
   
@@ -99,9 +98,8 @@ hr {
 }
 
 @media screen and (max-width: 1920px) {
-    .column {
-      flex: calc(100% / 3 - 10px);
-      max-width: calc(100% / 3 - 10px);
+    .grid-item {
+      width: calc(100% / 4 - 10px);
     }
 }
 
@@ -128,9 +126,8 @@ hr {
 }
 
 @media screen and (max-width: 854px) {
-    .column {
-      flex: calc(50% - 10px);
-      max-width: calc(50% - 10px);
+    .grid-item {
+      width: calc(50% - 10px);
     }
 }
 
@@ -150,9 +147,8 @@ hr {
 }
 
 @media screen and (max-width: 500px) {
-    .column {
-      flex: 100%;
-      max-width: 100%;
+    .grid-item {
+      width: 100%;
     }
 }
 
