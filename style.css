@@ -80,11 +80,10 @@ hr {
 
 .grid-item {
     width: calc(100% / 6 - 10px);
-    padding: 0 5px 0 5px;
+    margin: 10px 5px 0 5px;
 }
   
-.twitter-img {
-    margin-top: 10px;
+.twitter-img {    
     vertical-align: middle;
     width: 100%;
     border-radius: 16px;
@@ -160,7 +159,7 @@ hr {
 
 @media screen and (max-width: 500px) {
     .grid-item {
-        width: 100%;
+        width: calc(100% - 10px);
     }
 }
 
