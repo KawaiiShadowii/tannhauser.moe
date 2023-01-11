@@ -8,6 +8,7 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 1.5em;
     color: white;
+    overflow-x: hidden;
 }
 
 .content {
@@ -51,7 +52,7 @@ hr {
 
 .button-container {
     text-align: center;
-    margin: 16px 0 64px 0;
+    margin-top: 16px;
 }
 
 .counter-button {
@@ -68,6 +69,11 @@ hr {
 
 .counter-button:hover {
     background-color: #2d2463;
+}
+
+.animation-container {
+    height: 256px;
+    text-align: right;
 }
 
 .flexbox {

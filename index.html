@@ -2,24 +2,24 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Ei Ei Mun!</title>
-        <meta name="author" content="KevinVG207, Kawaii_Shadowii"/>
+        <title>Ei Ei Mun! - tannhauser.moe</title>
+        <meta name="author" content="Kawaii Shadowii"/>
         <meta name="description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
         <meta name="keywords" content="uma,musume,uma musume,matikane,tannhäuser,matikane tannhäuser,tannhauser,matikane tannhauser,uma musume pretty derby,pretty,derby,pretty derby,ウマ娘,ウマ娘プリティーダービー,プリティーダービー,マチカネ,タンホイザ,マチカネタンホイザ"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
-        <meta property="og:title" content="Ei Ei Mun!"/>
+        <meta property="og:title" content="Ei Ei Mun! - tannhauser.moe"/>
         <meta property="og:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
         <meta property="og:type" content="website"/>
-        <!--<meta property="og:url" content="placeholder"/>-->
-        <!--<meta property="og:image" content="placeholder/TannhauserHappy.png"/>-->
+        <meta property="og:url" content="https://www.tannhauser.moe/"/>
+        <meta property="og:image" content="https://www.tannhauser.moe//img/TannhauserHappy.png"/>
         <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="Ei Ei Mun!"/>
+        <meta name="twitter:title" content="Ei Ei Mun! - tannhauser.moe"/>
         <meta name="twitter:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
-        <!--<meta name="twitter:image" content="placeholder/TannhauserHappy.png"/>-->
+        <meta name="twitter:image" content="https://www.tannhauser.moe//img/TannhauserHappy.png"/>
         <link rel="stylesheet" href="style.css" type="text/css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-        <!--<link rel="canonical" href="placeholder"/> -->
+        <link rel="canonical" href="https://www.tannhauser.moe/"/>
     </head>
     <body>
         <div class="content">
@@ -32,6 +32,7 @@
             <div class="button-container">
                 <button class="counter-button" onclick="counterClick()">Squish the mun~!</button>
             </div>
+            <div class="animation-container"></div>
             <h2>Machitan Photo Gallery</h2>
             <hr>
             <div class="flexbox">
@@ -45,15 +46,55 @@
             var counter = 0;
             var lastSecondCounter = 0;
             var temporaryCounter = 0;
+            var firstSquish = true;
 
             function counterClick() {
                 var counterElement = document.getElementsByClassName("counter")[0];                
                 lastSecondCounter += 1;
-                counterElement.textContent = (counter + lastSecondCounter + temporaryCounter).toLocaleString();
+                counterElement.textContent = (counter + lastSecondCounter + temporaryCounter).toLocaleString();             
 
-                var random = Math.floor(Math.random() * 5) + 1;                
-                var audio = new Audio("mun".concat(random, ".mp3"));
+                playMun();
+                animateTannhauser();
+            }
+
+            function playMun() {
+                var audio;
+
+                if (firstSquish) {
+                    firstSquish = false;
+                    audio = new Audio("audio/ganbaru.mp3");
+                } else {
+                    var random = Math.floor(Math.random() * 5) + 1;
+                    audio = new Audio("audio/mun".concat(random, ".mp3"));
+                }
+                
                 audio.play();
+            }
+
+            function animateTannhauser() {
+                var button_container = document.getElementsByClassName("animation-container")[0];
+                var id = null;
+
+                var random = Math.floor(Math.random() * 2) + 1;
+                var elem = document.createElement("img");
+                elem.setAttribute("src", "img/ChibiTannhauser".concat(random, ".png"));
+                elem.style.position = "absolute";
+                elem.style.right = "-256px";
+                button_container.appendChild(elem);
+
+                var pos = -256;
+                var limit = window.outerWidth + 512;
+                clearInterval(id);
+                id = setInterval(frame, 10);
+                function frame() {
+                    if (pos >= limit) {
+                    clearInterval(id);
+                    elem.remove()
+                    } else {
+                    pos += 20;
+                    elem.style.right = pos + 'px'; 
+                    }
+                }
             }
 
             function squishMuns() {
@@ -80,8 +121,6 @@
             }
 
             function autorun() {
-                var audio = new Audio("ganbaru.mp3");
-                audio.play();
                 squishMuns();
                 loadImages();
             }
