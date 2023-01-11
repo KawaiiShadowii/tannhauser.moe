@@ -11,6 +11,13 @@ body {
     overflow-x: hidden;
 }
 
+.preload {
+    position: absolute;
+    left: 0;
+    top: 0;
+    visibility: hidden;
+}
+
 .content {
     margin: 2vh 10vw 2vh 10vw;    
 }

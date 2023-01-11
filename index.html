@@ -23,6 +23,8 @@
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     </head>
     <body>
+        <img src="img/ChibiTannhauser1.png" class="preload">
+        <img src="img/ChibiTannhauser2.png" class="preload">
         <div class="content">
             <h1>Welcome to tannhauser.moe</h1>
             <hr class="subtitle-seperator">
@@ -127,6 +129,7 @@
             function autorun() {
                 squishMuns();
                 loadImages();
+                removePreloads();
             }
 
             function loadImages() {
@@ -167,6 +170,14 @@
 
                 req.open("GET", "images.json");
                 req.send();  
+            }
+
+            function removePreloads() {
+                var preloads = [...document.getElementsByClassName("preload")]; // What the mun~ is this???
+
+                for (const preload of preloads) {
+                    document.body.removeChild(preload);
+                }
             }
 
             window.onload = autorun();
