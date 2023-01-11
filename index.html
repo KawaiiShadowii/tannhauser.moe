@@ -111,7 +111,6 @@
                 }
 
                 req.open("POST", "https://umapyoi.net/api/v1/mun");
-                req.setRequestHeader("Content-Type", "application/json");
                 var bodyString = JSON.stringify({"muns": lastSecondCounter})
                 temporaryCounter = lastSecondCounter;
                 lastSecondCounter = 0;
