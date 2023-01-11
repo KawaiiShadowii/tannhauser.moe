@@ -23,17 +23,16 @@
     </head>
     <body>
         <div class="content">
-            <h1 class="title">Welcome to tannhauser.moe</h1>
+            <h1>Welcome to tannhauser.moe</h1>
             <hr class="subtitle-seperator">
-            <h2 class="subtitle">The website for Matikane Tannhäuser, the cutest Uma Musume out there.</h2>
-            <p class="center">The mun~ has been squished</p>
-            <p class="counter center">0</p>
-            <p class="center">times</p>
-            <div class="button-container">
+            <h2>The website for Matikane Tannhäuser, the cutest Uma Musume out there.</h2>
+            <div class="counter-container">
+                <p>The mun~ has been squished</p>
+                <p class="counter">0</p>
+                <p>times</p>
                 <button class="counter-button" onclick="counterClick()">Squish the mun~!</button>
             </div>
-            <div class="animation-container"></div>
-            <h2>Machitan Photo Gallery</h2>
+            <h2 class="gallery-title">Machitan Photo Gallery</h2>
             <hr>
             <div class="flexbox">
                 <noscript>Your browser does not support JavaScript or JavaScript has been disabled.<br>This website relies on JavaScript, so please enable it or use another browser.</noscript>
@@ -72,7 +71,7 @@
             }
 
             function animateTannhauser() {
-                var button_container = document.getElementsByClassName("animation-container")[0];
+                var counter_button = document.getElementsByClassName("counter-button")[0];
                 var id = null;
 
                 var random = Math.floor(Math.random() * 2) + 1;
@@ -80,10 +79,12 @@
                 elem.setAttribute("src", "img/ChibiTannhauser".concat(random, ".png"));
                 elem.style.position = "absolute";
                 elem.style.right = "-256px";
-                button_container.appendChild(elem);
+                elem.style.top = counter_button.getClientRects()[0].bottom + scrollY - 256 + "px"
+                elem.style.zIndex = "-1";
+                document.body.appendChild(elem);
 
                 var pos = -256;
-                var limit = window.outerWidth + 512;
+                var limit = window.innerWidth + 256;
                 clearInterval(id);
                 id = setInterval(frame, 10);
                 function frame() {
