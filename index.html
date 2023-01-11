@@ -20,6 +20,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
         <link rel="canonical" href="https://www.tannhauser.moe/"/>
+        <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     </head>
     <body>
         <div class="content">
@@ -34,7 +35,7 @@
             </div>
             <h2 class="gallery-title">Machitan Photo Gallery</h2>
             <hr>
-            <div class="flexbox">
+            <div class="grid">
                 <noscript>Your browser does not support JavaScript or JavaScript has been disabled.<br>This website relies on JavaScript, so please enable it or use another browser.</noscript>
             </div>
         </div>
@@ -46,6 +47,9 @@
             var lastSecondCounter = 0;
             var temporaryCounter = 0;
             var firstSquish = true;
+
+            var grid_element = document.querySelector(".grid");
+            var msnry;
 
             function counterClick() {
                 var counterElement = document.getElementsByClassName("counter")[0];                
@@ -131,57 +135,32 @@
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
                         data = data.sort(() => Math.random() - 0.5)
-                        
-                        var column1 = [];
-                        var column2 = [];
-                        var column3 = [];
-                        var column4 = [];
-                        var column5 = [];
-                        var column6 = [];
 
                         for (let i = 0; i < data.length; i++) {
                             var entry = data[i];
-                            var mod = i % 6;
+                            
+                            twitter_link = document.createElement("a");
+                            twitter_link.setAttribute("href", entry.link);
+                            twitter_link.setAttribute("target", "_blank");
+                            twitter_link.classList.add("twitter-link");
+                            twitter_link.classList.add("grid-item");
 
-                            if (mod == 0) {
-                                column1.push(entry);
-                            } else if (mod == 1) {
-                                column2.push(entry);
-                            } else if (mod == 2) {
-                                column3.push(entry);
-                            } else if (mod == 3) {
-                                column4.push(entry);
-                            } else if (mod == 4) {
-                                column5.push(entry);
-                            } else if (mod == 5) {
-                                column6.push(entry);
-                            }
-                        }
-
-                        var columns = [column1, column2, column3, column4, column5, column6];
-
-                        columns.forEach(curr_column => {
-                            column = document.createElement("div");
-                            column.setAttribute("class", "column");
-                        
-                            curr_column.forEach(entry => {
-                                twitter_link = document.createElement("a");
-                                twitter_link.setAttribute("href", entry.link);
-                                twitter_link.setAttribute("target", "_blank");
-                                twitter_link.setAttribute("class", "twitter-link");
-
-                                twitter_img = document.createElement("img");
-                                twitter_img.setAttribute("src", entry.img);
-                                twitter_img.setAttribute("class", "twitter-img");
-                                twitter_img.setAttribute("alt", "");
-                                twitter_img.setAttribute("loading", "lazy");
-
-                                twitter_link.appendChild(twitter_img);
-                                column.appendChild(twitter_link);
+                            twitter_img = document.createElement("img");
+                            twitter_img.setAttribute("src", entry.img);
+                            twitter_img.setAttribute("class", "twitter-img");
+                            twitter_img.setAttribute("alt", "");
+                            twitter_img.setAttribute("loading", "lazy");
+                            twitter_img.addEventListener("load", function() {
+                                msnry.layout();
                             });
 
-                            var fb = document.getElementsByClassName("flexbox")[0];
-                            fb.appendChild(column);
+                            twitter_link.appendChild(twitter_img);
+                            grid_element.appendChild(twitter_link);
+                        }
+
+                        msnry = new Masonry( grid_element, {
+                            itemSelector: '.grid-item',
+                            percentPosition: true
                         });
                     }                                
                 }
