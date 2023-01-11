@@ -97,15 +97,21 @@ hr {
     padding: 15px 10vw;
 }
 
+@media screen and (max-width: 2240px) {
+    .grid-item {
+        width: calc(20% - 10px);
+    }
+}
+
 @media screen and (max-width: 1920px) {
     .grid-item {
-      width: calc(100% / 4 - 10px);
+        width: calc(25% - 10px);
     }
 }
 
 @media screen and (max-width: 1512px) {
     body {
-      font-size: 1.25em;
+        font-size: 1.25em;
     }
 
     .subtitle-seperator {    
@@ -114,9 +120,15 @@ hr {
     }
 }
 
+@media screen and (max-width: 1280px) {
+    .grid-item {
+        width: calc(100% / 3 - 10px);
+    }
+}
+
 @media screen and (max-width: 1265px) {
     body {
-      font-size: 1em;
+        font-size: 1em;
     }
 
     .subtitle-seperator {    
@@ -127,13 +139,13 @@ hr {
 
 @media screen and (max-width: 854px) {
     .grid-item {
-      width: calc(50% - 10px);
+        width: calc(50% - 10px);
     }
 }
 
 @media screen and (max-width: 510px) {
     h1 {
-      font-size: 2.5em;
+        font-size: 2.5em;
     }
 
     h2 {
@@ -148,13 +160,13 @@ hr {
 
 @media screen and (max-width: 500px) {
     .grid-item {
-      width: 100%;
+        width: 100%;
     }
 }
 
 @media screen and (max-width: 430px) {
     h1 {
-      font-size: 2em;
+        font-size: 2em;
     }
 
     .subtitle-seperator {    
