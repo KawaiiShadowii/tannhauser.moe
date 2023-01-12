@@ -45,6 +45,24 @@
             <p>If you have any suggestions in terms of features/images (including source), don't hesitate to contact me on Discord at <strong>Kawaii Shadowii#4571</strong></p>
         </div>        
         <script type="text/javascript">
+            var audioList = [
+                new Audio("audio/ganbaru.mp3"),
+                new Audio("audio/mun1.mp3"),
+                new Audio("audio/mun2.mp3"),
+                new Audio("audio/mun3.mp3"),
+                new Audio("audio/mun4.mp3"),
+                new Audio("audio/mun5.mp3"),
+                new Audio("audio/mun6.mp3"),
+                new Audio("audio/mun7.mp3"),
+                new Audio("audio/mun8.mp3"),
+                new Audio("audio/mun9.mp3"),
+                new Audio("audio/mun10.mp3")
+            ];
+
+            audioList.forEach(function(audio) {
+                audio.preload = "auto";
+            });
+
             var counter = 0;
             var lastSecondCounter = 0;
             var temporaryCounter = 0;
@@ -67,13 +85,17 @@
 
                 if (firstSquish) {
                     firstSquish = false;
-                    audio = new Audio("audio/ganbaru.mp3");
+                    audio = audioList[0].cloneNode();
                 } else {
                     var random = Math.floor(Math.random() * 10) + 1;
-                    audio = new Audio("audio/mun".concat(random, ".mp3"));
+                    audio = audioList[random].cloneNode();
                 }
-                
+
                 audio.play();
+
+                audio.addEventListener("ended", function(){
+                   this.remove();
+                });
             }
 
             function animateTannhauser() {
@@ -82,7 +104,7 @@
 
                 var random = Math.floor(Math.random() * 2) + 1;
                 var elem = document.createElement("img");
-                elem.setAttribute("src", "img/ChibiTannhauser".concat(random, ".png"));
+                elem.setAttribute("src", `img/ChibiTannhauser${random}.png`);
                 elem.style.position = "absolute";
                 elem.style.right = "-256px";
                 elem.style.top = counter_button.getClientRects()[0].bottom + scrollY - 256 + "px"
