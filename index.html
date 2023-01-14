@@ -81,7 +81,7 @@
             var firstVisibleVideo = true;
 
             var videoIdMinViews = {
-                "Lw03JGAy6N4": 200000,
+                "50VY6RKXPPM": 200000,
                 "luvRLy9bVo0": 400000,
                 "lYwAR2g9e3w": 600000,
                 "YV3sckHUGQg": 800000,
@@ -149,8 +149,8 @@
 
                 for (const videoId in videoIdMinViews) {
                     counter++;
-                    var thumbnailId = `thumbnail${counter}`;
-                    var playerId = `player${counter}`;
+                    let thumbnailId = `thumbnail${counter}`;
+                    let playerId = `player${counter}`;
 
                     var videoItem = document.createElement("div");
                     videoItem.classList.add("video-item");

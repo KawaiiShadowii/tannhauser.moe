@@ -77,10 +77,6 @@ hr {
     background-color: #2d2463;
 }
 
-#video-container {
-    display: none;
-}
-
 #video-title, #gallery-title {
     margin-bottom: 10px;
 }
@@ -96,7 +92,6 @@ hr {
     width: calc(80vw / 3 - 10px);
     height: calc((80vw / 3 - 10px) / 16 * 9);
     margin: 10px 5px 0 5px;
-    display: none;
 }
 
 .video-item > img {
