@@ -3,48 +3,54 @@
     <head>
         <meta charset="UTF-8">
         <title>Ei Ei Mun! - tannhauser.moe</title>
-        <meta name="author" content="Kawaii Shadowii"/>
-        <meta name="description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
-        <meta name="keywords" content="uma,musume,uma musume,matikane,tannhäuser,matikane tannhäuser,tannhauser,matikane tannhauser,uma musume pretty derby,pretty,derby,pretty derby,ウマ娘,ウマ娘プリティーダービー,プリティーダービー,マチカネ,タンホイザ,マチカネタンホイザ"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1"/>
-        <meta property="og:title" content="Ei Ei Mun! - tannhauser.moe"/>
-        <meta property="og:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:url" content="https://www.tannhauser.moe/"/>
-        <meta property="og:image" content="https://www.tannhauser.moe/img/TannhauserHappy.png"/>
-        <meta name="twitter:card" content="summary"/>
-        <meta name="twitter:title" content="Ei Ei Mun! - tannhauser.moe"/>
-        <meta name="twitter:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there."/>
-        <meta name="twitter:image" content="https://www.tannhauser.moe/img/TannhauserHappy.png"/>
-        <link rel="stylesheet" href="style.css" type="text/css"/>
+        <meta name="author" content="Kawaii Shadowii">
+        <meta name="description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there.">
+        <meta name="keywords" content="uma,musume,uma musume,matikane,tannhäuser,matikane tannhäuser,tannhauser,matikane tannhauser,uma musume pretty derby,pretty,derby,pretty derby,ウマ娘,ウマ娘プリティーダービー,プリティーダービー,マチカネ,タンホイザ,マチカネタンホイザ">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+        <meta property="og:title" content="Ei Ei Mun! - tannhauser.moe">
+        <meta property="og:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there.">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.tannhauser.moe/">
+        <meta property="og:image" content="https://www.tannhauser.moe/img/TannhauserHappy.png">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Ei Ei Mun! - tannhauser.moe">
+        <meta name="twitter:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there.">
+        <meta name="twitter:image" content="https://www.tannhauser.moe/img/TannhauserHappy.png">
+        <link rel="stylesheet" href="style.css" type="text/css">
         <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-        <link rel="canonical" href="https://www.tannhauser.moe/"/>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+        <link rel="canonical" href="https://www.tannhauser.moe/">
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
     </head>
     <body>
         <img src="img/ChibiTannhauser1.png" class="preload">
         <img src="img/ChibiTannhauser2.png" class="preload">
-        <div class="content">
+        <div id="content">
             <h1>Welcome to tannhauser.moe</h1>
-            <hr class="subtitle-seperator">
+            <hr id="subtitle-seperator">
             <h2>The website for Matikane Tannhäuser, the cutest Uma Musume out there.</h2>
-            <div class="counter-container">
+            <div id="counter-container">
                 <p>The mun~ has been squished</p>
-                <p class="counter">0</p>
+                <p id="counter">0</p>
                 <p>times</p>
-                <button class="counter-button" onclick="counterClick()">Squish the mun~!</button>
+                <button id="counter-button" onclick="counterClick()">Squish the mun~!</button>
             </div>
-            <h2 class="gallery-title">Machitan Photo Gallery</h2>
+            <div id="video-container">
+                <h2 id="video-title">Machitan Concerts</h2>
+                <hr>
+                <div id="video-item-container"></div>
+            </div>
+            <h2 id="gallery-title">Machitan Photo Gallery</h2>
             <hr>
-            <div class="grid">
+            <div id="grid">
                 <noscript>Your browser does not support JavaScript or JavaScript has been disabled.<br>This website relies on JavaScript, so please enable it or use another browser.</noscript>
             </div>
         </div>
-        <div class="footer">
+        <div id="footer">
             <p>If you have any suggestions in terms of features/images (including source), don't hesitate to contact me on Discord at <strong>Kawaii Shadowii#4571</strong></p>
         </div>        
         <script type="text/javascript">
+            //#region Global Variables
             var audioList = [
                 new Audio("audio/ganbaru.mp3"),
                 new Audio("audio/mun1.mp3"),
@@ -59,81 +65,55 @@
                 new Audio("audio/mun10.mp3")
             ];
 
-            audioList.forEach(function(audio) {
+            for (const audio of audioList) {
                 audio.preload = "auto";
-            });
+            };
 
             var counter = 0;
             var lastSecondCounter = 0;
             var temporaryCounter = 0;
             var firstSquish = true;
 
-            var grid_element = document.querySelector(".grid");
+            var grid_element = document.querySelector("#grid");
             var msnry;
 
-            function counterClick() {
-                var counterElement = document.getElementsByClassName("counter")[0];                
-                lastSecondCounter += 1;
-                counterElement.textContent = (counter + lastSecondCounter + temporaryCounter).toLocaleString();             
+            var playerReady = false;
+            var firstVisibleVideo = true;
 
-                playMun();
-                animateTannhauser();
+            var videoIdMinViews = {
+                "Lw03JGAy6N4": 200000,
+                "luvRLy9bVo0": 400000,
+                "lYwAR2g9e3w": 600000,
+                "YV3sckHUGQg": 800000,
+                "M1KAsBYweH8": 1000000,
+                "Zv25uERcqbI": 1200000,
+                "hbhGliMgytM": 1400000
             }
+            
+            //#endregion
 
-            function playMun() {
-                var audio;
-
-                if (firstSquish) {
-                    firstSquish = false;
-                    audio = audioList[0].cloneNode();
-                } else {
-                    var random = Math.floor(Math.random() * 10) + 1;
-                    audio = audioList[random].cloneNode();
-                }
-
-                audio.play();
-
-                audio.addEventListener("ended", function(){
-                   this.remove();
-                });
-            }
-
-            function animateTannhauser() {
-                var counter_button = document.getElementsByClassName("counter-button")[0];
-                var id = null;
-
-                var random = Math.floor(Math.random() * 2) + 1;
-                var elem = document.createElement("img");
-                elem.setAttribute("src", `img/ChibiTannhauser${random}.png`);
-                elem.style.position = "absolute";
-                elem.style.right = "-256px";
-                elem.style.top = counter_button.getClientRects()[0].bottom + scrollY - 256 + "px"
-                elem.style.zIndex = "-1";
-                document.body.appendChild(elem);
-
-                var pos = -256;
-                var limit = window.innerWidth + 256;
-                clearInterval(id);
-                id = setInterval(frame, 10);
-                function frame() {
-                    if (pos >= limit) {
-                    clearInterval(id);
-                    elem.remove()
-                    } else {
-                    pos += 20;
-                    elem.style.right = pos + 'px'; 
-                    }
-                }
+            //#region Autostart
+            function autorun() {                
+                loadVideos();
+                squishMuns();
+                loadImages();
+                removePreloads();
             }
 
             function squishMuns() {
-                var counterElement = document.getElementsByClassName("counter")[0];
+                setMunCounter();
+                setTimeout(squishMuns, 1000)
+            }
+
+            function setMunCounter() {
+                var counterElement = document.getElementById("counter");
                 
                 var req = new XMLHttpRequest();
                 req.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
                         counter = data.muns;
+                        checkVideoVisibility();
                         temporaryCounter = 0;
                         counterElement.textContent = (counter + lastSecondCounter).toLocaleString();
                     }
@@ -144,16 +124,53 @@
                 temporaryCounter = lastSecondCounter;
                 lastSecondCounter = 0;
                 req.send(bodyString);
-
-                setTimeout(squishMuns, 1000)
             }
 
-            function autorun() {
-                squishMuns();
-                loadImages();
-                removePreloads();
+            function checkVideoVisibility() {
+                var videoItems = document.querySelectorAll(".video-item");
+
+                for (const videoItem of videoItems) {
+                    var videoId = videoItem.getAttribute("data-videoId");
+
+                    if (counter >= videoIdMinViews[videoId]) {
+                        if (firstVisibleVideo) {
+                            var videoContainer = document.querySelector("#video-container")
+                            videoContainer.style.display = "initial";
+                            firstVisibleVideo = false;
+                        }
+                        videoItem.style.display = "initial";
+                    }
+                };
             }
 
+            function loadVideos() {
+                var videoItemContainer = document.getElementById("video-item-container");
+                var counter = 0;
+
+                for (const videoId in videoIdMinViews) {
+                    counter++;
+                    var thumbnailId = `thumbnail${counter}`;
+                    var playerId = `player${counter}`;
+
+                    var videoItem = document.createElement("div");
+                    videoItem.classList.add("video-item");
+                    videoItem.setAttribute("data-videoId", videoId);
+
+                    var thumbnail = document.createElement("img");
+                    thumbnail.id = thumbnailId;
+                    thumbnail.src= `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+                    thumbnail.loading = "lazy";
+                    thumbnail.onclick = function(){createPlayer(videoId, playerId, thumbnailId)};
+                    videoItem.appendChild(thumbnail);
+
+                    var player = document.createElement("div");
+                    player.id = playerId;
+                    videoItem.appendChild(player);
+
+                    videoItemContainer.appendChild(videoItem);
+                };
+            }
+            
             function loadImages() {
                 var req = new XMLHttpRequest();
                 req.onreadystatechange = function() {
@@ -161,20 +178,18 @@
                         var data = JSON.parse(this.responseText);
                         data = data.sort(() => Math.random() - 0.5)
 
-                        for (let i = 0; i < data.length; i++) {
-                            var entry = data[i];
-                            
-                            twitter_link = document.createElement("a");
-                            twitter_link.setAttribute("href", entry.link);
-                            twitter_link.setAttribute("target", "_blank");
+                        for (const entry of data) {                            
+                            var twitter_link = document.createElement("a");
+                            twitter_link.href = entry.link;
+                            twitter_link.target = "_blank";
                             twitter_link.classList.add("twitter-link");
                             twitter_link.classList.add("grid-item");
 
-                            twitter_img = document.createElement("img");
-                            twitter_img.setAttribute("src", entry.img);
-                            twitter_img.setAttribute("class", "twitter-img");
-                            twitter_img.setAttribute("alt", "");
-                            twitter_img.setAttribute("loading", "lazy");
+                            var twitter_img = document.createElement("img");
+                            twitter_img.src = entry.img;
+                            twitter_img.classList.add("twitter-img");
+                            twitter_img.alt = "";
+                            twitter_img.loading = "lazy";
                             twitter_img.addEventListener("load", function() {
                                 msnry.layout();
                             });
@@ -201,6 +216,107 @@
                     document.body.removeChild(preload);
                 }
             }
+            //#endregion
+
+            //#region Counter Button
+            function counterClick() {
+                var counterElement = document.getElementById("counter");                
+                lastSecondCounter += 1;
+                counterElement.textContent = (counter + lastSecondCounter + temporaryCounter).toLocaleString();             
+
+                playMun();
+                animateTannhauser();
+            }
+
+            function playMun() {
+                var audio;
+
+                if (firstSquish) {
+                    firstSquish = false;
+                    audio = audioList[0].cloneNode();
+                } else {
+                    var random = Math.floor(Math.random() * 10) + 1;
+                    audio = audioList[random].cloneNode();
+                }
+
+                audio.play();
+
+                audio.addEventListener("ended", function(){
+                   this.remove();
+                });
+            }
+
+            function animateTannhauser() {
+                var counter_button = document.getElementById("counter-button");
+                var id = null;
+
+                var random = Math.floor(Math.random() * 2) + 1;
+                var elem = document.createElement("img");
+                elem.src = `img/ChibiTannhauser${random}.png`;
+                elem.style.position = "absolute";
+                elem.style.right = "-256px";
+                elem.style.top = counter_button.getClientRects()[0].bottom + scrollY - 256 + "px"
+                elem.style.zIndex = "-1";
+                document.body.appendChild(elem);
+
+                var pos = -256;
+                var limit = window.innerWidth + 256;
+                clearInterval(id);
+                id = setInterval(frame, 10);
+                function frame() {
+                    if (pos >= limit) {
+                    clearInterval(id);
+                    elem.remove()
+                    } else {
+                    pos += 20;
+                    elem.style.right = pos + 'px'; 
+                    }
+                }
+            }
+            //#endregion
+            
+            //#region YouTube player
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            function onYouTubeIframeAPIReady() {
+                playerReady = true;
+            }
+
+            function createPlayer(videoId, playerId, thumbnailId) {
+                if (playerReady) {
+                    var thumbnail = document.getElementById(thumbnailId);
+                    thumbnail.style.display = "none";
+                    new YT.Player(playerId, {
+                        height: "100%",
+                        width: "100%",
+                        videoId: videoId,
+                        playerVars: {
+                            "playsinline": 1
+                        },
+                        events: {
+                            "onReady": onPlayerReady,
+                            "onStateChange": onPlayerStateChange
+                        }
+                    });
+                } else {
+                    setTimeout(createPlayer, 1000)
+                }
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.ENDED) {
+                    event.target.stopVideo();
+                }
+            }
+            //#endregion
 
             window.onload = autorun();
         </script>

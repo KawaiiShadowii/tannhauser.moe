@@ -18,8 +18,9 @@ body {
     visibility: hidden;
 }
 
-.content {
-    margin: 2vh 10vw 2vh 10vw;    
+#content {
+    margin: 2vh auto;
+    width: 80vw;
 }
 
 h1 {
@@ -41,26 +42,26 @@ hr {
     border-right: none;
 }
 
-.subtitle-seperator {
+#subtitle-seperator {
     margin-bottom: 10px;
 }
 
-.counter-container {
+#counter-container {
     text-align: center; 
     font-weight: bold;
     margin: 64px 0;
 }
 
-.counter-container > p {
+#counter-container > p {
     text-shadow: #E77471 0 0 10px,#E77471 0 0 10px,#E77471 0 0 10px,#E77471 0 0 10px,#E77471 0 0 10px;
 }
 
-.counter {
+#counter {
     color: #574f84;
     font-size: 2em;
 }
 
-.counter-button {
+#counter-button {
     background-color: #574f84;
     border: none;
     color: white;
@@ -72,17 +73,40 @@ hr {
     margin-top: 16px;
 }
 
-.counter-button:hover {
+#counter-button:hover {
     background-color: #2d2463;
 }
 
-.gallery-title {
+#video-container {
+    display: none;
+}
+
+#video-title, #gallery-title {
     margin-bottom: 10px;
 }
 
-.flexbox {
+#video-item-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 64px;
+}
+
+.video-item {
+    width: calc(80vw / 3 - 10px);
+    height: calc((80vw / 3 - 10px) / 16 * 9);
+    margin: 10px 5px 0 5px;
+    display: none;
+}
+
+.video-item > img {
+    width: inherit;
+    height: inherit;
+    cursor: pointer;
+}
+
+.video-item > img, iframe {
+    border-radius: 16px;
 }
 
 .grid-item {
@@ -96,7 +120,7 @@ hr {
     border-radius: 16px;
 }
 
-.footer {
+#footer {
     background-color: white;
     color: black;
     text-align: center;
@@ -120,7 +144,7 @@ hr {
         font-size: 1.25em;
     }
 
-    .subtitle-seperator {    
+    #subtitle-seperator {    
         margin-top: 3px;
         margin-bottom: 11px;
     }
@@ -130,6 +154,11 @@ hr {
     .grid-item {
         width: calc(100% / 3 - 10px);
     }
+
+    .video-item {
+        width: calc(40vw - 10px);
+        height: calc((40vw - 10px) / 16 * 9);
+    }
 }
 
 @media screen and (max-width: 1265px) {
@@ -137,7 +166,7 @@ hr {
         font-size: 1em;
     }
 
-    .subtitle-seperator {    
+    #subtitle-seperator {    
         margin-top: 6px;
         margin-bottom: 12px;
     }
@@ -146,6 +175,11 @@ hr {
 @media screen and (max-width: 854px) {
     .grid-item {
         width: calc(50% - 10px);
+    }
+
+    .video-item {
+        width: calc(80vw - 10px);
+        height: calc((80vw - 10px) / 16 * 9);
     }
 }
 
@@ -158,7 +192,7 @@ hr {
         font-size: 1.25em;
     }
 
-    .subtitle-seperator {    
+    #subtitle-seperator {    
         margin-top: 8px;
         margin-bottom: 13px;
     }
@@ -175,7 +209,7 @@ hr {
         font-size: 2em;
     }
 
-    .subtitle-seperator {    
+    #subtitle-seperator {    
         margin-top: 10px;
     }
 }
