@@ -70,7 +70,7 @@
             };
 
             var counter = 0;
-            var lastSecondCounter = 0;
+            var lastThreeSecondsCounter = 0;
             var temporaryCounter = 0;
             var firstSquish = true;
 
@@ -101,7 +101,7 @@
 
             function squishMuns() {
                 setMunCounter();
-                setTimeout(squishMuns, 1000)
+                setTimeout(squishMuns, 3000)
             }
 
             function setMunCounter() {
@@ -114,14 +114,14 @@
                         counter = data.muns;
                         checkVideoVisibility();
                         temporaryCounter = 0;
-                        counterElement.textContent = (counter + lastSecondCounter).toLocaleString();
+                        counterElement.textContent = (counter + lastThreeSecondsCounter).toLocaleString();
                     }
                 }
 
                 req.open("POST", "https://umapyoi.net/api/v1/mun");
-                var bodyString = JSON.stringify({"muns": lastSecondCounter})
-                temporaryCounter = lastSecondCounter;
-                lastSecondCounter = 0;
+                var bodyString = JSON.stringify({"muns": lastThreeSecondsCounter})
+                temporaryCounter = lastThreeSecondsCounter;
+                lastThreeSecondsCounter = 0;
                 req.send(bodyString);
             }
 
@@ -220,8 +220,8 @@
             //#region Counter Button
             function counterClick() {
                 var counterElement = document.getElementById("counter");                
-                lastSecondCounter += 1;
-                counterElement.textContent = (counter + lastSecondCounter + temporaryCounter).toLocaleString();             
+                lastThreeSecondsCounter += 1;
+                counterElement.textContent = (counter + lastThreeSecondsCounter + temporaryCounter).toLocaleString();             
 
                 playMun();
                 animateTannhauser();
