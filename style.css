@@ -127,6 +127,10 @@ hr {
     padding: 15px 10vw;
 }
 
+.no-break {
+    white-space: nowrap;
+}
+
 @media screen and (max-width: 2240px) {
     .grid-item {
         width: calc(20% - 10px);
