@@ -117,6 +117,7 @@ hr {
 .twitter-img {    
     vertical-align: middle;
     width: 100%;
+    height: auto;
     border-radius: 16px;
 }
 

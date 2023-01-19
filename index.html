@@ -177,6 +177,23 @@
                         var data = JSON.parse(this.responseText);
                         data = data.sort(() => Math.random() - 0.5)
 
+                        var contentWidth = window.innerWidth * 0.8
+                        var placeholderWidth = 0
+
+                        if (window.innerWidth <= 500) {
+                            placeholderWidth = contentWidth - 10;
+                        } else if (window.innerWidth <= 854) {
+                            placeholderWidth = contentWidth * 0.5 - 10;
+                        } else if (window.innerWidth <= 1280) {
+                            placeholderWidth = contentWidth / 3 - 10;
+                        } else if (window.innerWidth <= 1920) {
+                            placeholderWidth = contentWidth * 0.25 - 10;
+                        } else if (window.innerWidth <= 2240) {
+                            placeholderWidth = contentWidth * 0.2 - 10;
+                        } else {
+                            placeholderWidth = contentWidth / 6 - 10;
+                        }
+
                         for (const entry of data) {                            
                             var twitter_link = document.createElement("a");
                             twitter_link.href = entry.link;
@@ -185,10 +202,12 @@
                             twitter_link.classList.add("grid-item");
 
                             var twitter_img = document.createElement("img");
-                            twitter_img.src = entry.img;
-                            twitter_img.classList.add("twitter-img");
-                            twitter_img.alt = "";
                             twitter_img.loading = "lazy";
+                            twitter_img.src = entry.img;
+                            twitter_img.width = placeholderWidth;
+                            twitter_img.height = placeholderWidth;
+                            twitter_img.classList.add("twitter-img");
+                            twitter_img.alt = "";                            
                             twitter_img.addEventListener("load", function() {
                                 msnry.layout();
                             });
