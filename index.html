@@ -156,9 +156,10 @@
                     videoItem.setAttribute("data-videoId", videoId);
 
                     var thumbnail = document.createElement("img");
+                    thumbnail.loading = "lazy";
                     thumbnail.id = thumbnailId;
                     thumbnail.src= `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-                    thumbnail.loading = "lazy";
+                    thumbnail.alt = "";
                     thumbnail.onclick = function(){createPlayer(videoId, playerId, thumbnailId)};
                     videoItem.appendChild(thumbnail);
 
@@ -207,7 +208,7 @@
                             twitter_img.width = placeholderWidth;
                             twitter_img.height = placeholderWidth;
                             twitter_img.classList.add("twitter-img");
-                            twitter_img.alt = "";                            
+                            twitter_img.alt = "";
                             twitter_img.addEventListener("load", function() {
                                 msnry.layout();
                             });
