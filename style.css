@@ -64,8 +64,9 @@ hr {
 #counter-button {
     background-color: #574f84;
     border: none;
+    border-radius: 16px;
     color: white;
-    padding: 15px 32px;
+    padding: 16px 32px;
     text-decoration: none;
     font-size: 1em;
     font-family: 'Roboto', sans-serif;
@@ -124,12 +125,59 @@ hr {
 #footer {
     background-color: white;
     color: black;
-    text-align: center;
-    padding: 15px 10vw;
+    padding: 16px 10vw;
+    display: flex;    
+    gap: 16px;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-break {
     white-space: nowrap;
+}
+
+#trainer-profile {
+    min-width: 256px;
+    max-width: 720px;
+    height: auto;
+    border-top-left-radius: 2% 3.5%;
+    border-top-right-radius: 2% 3.5%;
+    border-bottom-left-radius: 2% 3.5%;
+    border-bottom-right-radius: 2% 3.5%;
+}
+
+#footer-header-text {
+    margin-bottom: 16px;
+}
+
+.footer-icon {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 2em;    
+}
+
+#discord-footer-icon {
+    color: #5662f6;
+}
+
+#twitter-footer-icon {
+    color: #1d9bf0;
+}
+
+#github-footer-icon {
+    color: #000000;
+}
+
+.footer-icon-text {
+    display: inline-block;
+    vertical-align: middle;
+    font-weight: bold;
+    margin-left: 6px;
+}
+
+#footer-repository-text {
+    margin-top: 32px;
+    margin-bottom: 16px;
 }
 
 @media screen and (max-width: 2240px) {
@@ -163,6 +211,23 @@ hr {
     .video-item {
         width: calc(40vw - 10px);
         height: calc((40vw - 10px) / 16 * 9);
+    }
+
+    #footer {        
+        flex-wrap: wrap;
+    }
+
+    #footer-text {
+        text-align: center;
+    }
+
+    #footer-header-text {
+        margin-bottom: 8px;
+    }
+
+    #footer-repository-text {
+        margin-top: 16px;
+        margin-bottom: 8px;
     }
 }
 

@@ -21,6 +21,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <link rel="canonical" href="https://www.tannhauser.moe/">
         <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+        <script src="https://code.iconify.design/iconify-icon/1.0.2/iconify-icon.min.js"></script>
     </head>
     <body>
         <img src="img/ChibiTannhauser1.png" class="preload">
@@ -47,7 +48,15 @@
             </div>
         </div>
         <div id="footer">
-            <p>If you have any suggestions in terms of features/images <span class="no-break">(including source),</span> don't hesitate to contact me on Discord at <strong><span class="no-break">Kawaii Shadowii#4571</span></strong> or on Twitter at <a href="https://twitter.com/Kawaii_Shadowii" target="_blank"><strong>@Kawaii_Shadowii</strong></a></p>
+            <img id="trainer-profile" loading="lazy" src="img/TrainerProfile.webp" alt="">
+            <div id="footer-text">
+                <p id="footer-header-text">If you have any suggestions in terms of features/images <span class="no-break">(including source),</span> don't hesitate to contact me here:</p>
+                <p><iconify-icon icon="ic:baseline-discord" id="discord-footer-icon" class="footer-icon"></iconify-icon><span class="footer-icon-text">Kawaii Shadowii#4571</span></p>
+                <p><a href="https://twitter.com/Kawaii_Shadowii" target="_blank"><iconify-icon icon="mdi:twitter" id="twitter-footer-icon" class="footer-icon"></iconify-icon><span class="footer-icon-text">@Kawaii_Shadowii</span></a></p>
+                <p><a href="https://github.com/KawaiiShadowii" target="_blank"><iconify-icon icon="mdi:github" id="github-footer-icon" class="footer-icon"></iconify-icon><span class="footer-icon-text">KawaiiShadowii</span></a></p>
+                <p id="footer-repository-text">You can check out the GitHub repository here:</p>
+                <p><a href="https://github.com/KawaiiShadowii/tannhauser.moe" target="_blank"><iconify-icon icon="mdi:github" id="github-footer-icon" class="footer-icon"></iconify-icon><span class="footer-icon-text">tannhauser.moe Repository</span></a></p>
+            </div>
         </div>
         <script type="text/javascript">
             //#region Global Variables
