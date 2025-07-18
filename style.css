@@ -78,6 +78,15 @@ hr {
     background-color: #2d2463;
 }
 
+#implementation-container {
+    margin-bottom: 3rem;
+}
+
+#implementation-countdown {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 #video-container {
     display: none;
 }
@@ -258,7 +267,7 @@ hr {
         font-size: 2.5em;
     }
 
-    h2 {
+    h2, #implementation-countdown {
         font-size: 1.25em;
     }
 
