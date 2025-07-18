@@ -36,6 +36,10 @@
                 <p>times</p>
                 <button id="counter-button" onclick="counterClick()">Squish the mun~!</button>
             </div>
+            <div id="implementation-container">
+                <h2 id="implementation-header">She's coming to the English version in:</h2>
+                <p id="implementation-countdown"></p>
+            </div>
             <div id="video-container">
                 <h2 id="video-title">Machitan Concerts</h2>
                 <hr>
@@ -98,6 +102,8 @@
                 "jCW3VvZTtNY": 1500000,
                 "ckgzzAenSlY": 2000000
             }
+
+            const IMPLEMENTATED_DATETIME = new Date("2026-02-09T22:00:00Z");
             //#endregion
 
             //#region Autostart
@@ -106,6 +112,7 @@
                 squishMuns();
                 loadImages();
                 removePreloads();
+                updateCountdown();
             }
 
             function squishMuns() {
@@ -343,6 +350,36 @@
                 if (event.data == YT.PlayerState.ENDED) {
                     event.target.stopVideo();
                 }
+            }
+            //#endregion
+
+            //#region Countdown
+            function updateCountdown() {
+                let countdownHeader = document.getElementById("implementation-header");
+                let countdownElement = document.getElementById("implementation-countdown");
+
+                let now = new Date();
+
+                if (now >= IMPLEMENTATED_DATETIME) {
+                    countdownHeader.textContent = "Machitan is available in the English version! 🥳🎉 Ei, ei, mun!";
+                    countdownElement.textContent = "";
+                    return;
+                }
+
+                let seconds = Math.floor((IMPLEMENTATED_DATETIME - now) / 1000);
+
+                countdownElement.textContent = generateCountdownString(seconds);
+
+                setTimeout(updateCountdown, 1000);
+            }
+
+            function generateCountdownString(input_seconds) {
+                let days = Math.floor(input_seconds / (60 * 60 * 24));
+                let hours = Math.floor((input_seconds % (60 * 60 * 24)) / (60 * 60));
+                let minutes = Math.floor((input_seconds % (60 * 60)) / 60);
+                let seconds = Math.floor(input_seconds % 60);
+
+                return `${days} day${days === 1 ? '' : 's'}, ${hours} hour${hours === 1 ? '' : 's'}, ${minutes} minute${minutes === 1 ? '' : 's'}, ${seconds} second${seconds === 1 ? '' : 's'}`;
             }
             //#endregion
 
