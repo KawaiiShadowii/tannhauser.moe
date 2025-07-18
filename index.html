@@ -2,18 +2,18 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Ei Ei Mun! - tannhauser.moe</title>
+        <title>Ei, ei, mun! - tannhauser.moe</title>
         <meta name="author" content="Kawaii Shadowii">
         <meta name="description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there.">
         <meta name="keywords" content="uma,musume,uma musume,matikane,tannhäuser,matikane tannhäuser,tannhauser,matikane tannhauser,uma musume pretty derby,pretty,derby,pretty derby,ウマ娘,ウマ娘プリティーダービー,プリティーダービー,マチカネ,タンホイザ,マチカネタンホイザ">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
-        <meta property="og:title" content="Ei Ei Mun! - tannhauser.moe">
+        <meta property="og:title" content="Ei, ei, mun! - tannhauser.moe">
         <meta property="og:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there.">
         <meta property="og:type" content="website">
         <meta property="og:url" content="https://www.tannhauser.moe/">
         <meta property="og:image" content="https://www.tannhauser.moe/img/TannhauserHappy.png">
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Ei Ei Mun! - tannhauser.moe">
+        <meta name="twitter:title" content="Ei, ei, mun! - tannhauser.moe">
         <meta name="twitter:description" content="The website for Matikane Tannhäuser, the cutest Uma Musume out there.">
         <meta name="twitter:image" content="https://www.tannhauser.moe/img/TannhauserHappy.png">
         <link rel="stylesheet" href="style.css" type="text/css">
@@ -91,17 +91,16 @@
             var msnry;
 
             var playerReady = false;
-            var firstVisibleVideo = true;
 
-            var videoIdMinViews = {
-                "bVzgjJaer3c": 250000,
-                "sGvUskSGjFo": 500000,
-                "eYdFB3sLo5w": 750000,
-                "iMzUHmmtQwE": 1000000,
-                "53ewYaWqGq8": 1250000,
-                "jCW3VvZTtNY": 1500000,
-                "ckgzzAenSlY": 2000000
-            }
+            var videoIds = [
+                "bVzgjJaer3c",
+                "sGvUskSGjFo",
+                "eYdFB3sLo5w",
+                "iMzUHmmtQwE",
+                "53ewYaWqGq8",
+                "jCW3VvZTtNY",
+                "ckgzzAenSlY"
+            ]
 
             const IMPLEMENTATED_DATETIME = new Date("2026-02-09T22:00:00Z");
             //#endregion
@@ -128,7 +127,6 @@
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
                         counter = data.muns;
-                        checkVideoVisibility();
                         temporaryCounter = 0;
                         counterElement.textContent = (counter + lastThreeSecondsCounter).toLocaleString();
                     }
@@ -141,28 +139,11 @@
                 req.send(bodyString);
             }
 
-            function checkVideoVisibility() {
-                var videoItems = document.querySelectorAll(".video-item");
-
-                for (const videoItem of videoItems) {
-                    var videoId = videoItem.getAttribute("data-videoId");
-
-                    if (counter >= videoIdMinViews[videoId]) {
-                        if (firstVisibleVideo) {
-                            var videoContainer = document.querySelector("#video-container")
-                            videoContainer.style.display = "initial";
-                            firstVisibleVideo = false;
-                        }
-                        videoItem.style.display = "initial";
-                    }
-                };
-            }
-
             function loadVideos() {
                 var videoItemContainer = document.getElementById("video-item-container");
                 var counter = 0;
 
-                for (const videoId in videoIdMinViews) {
+                for (const videoId of videoIds) {
                     counter++;
                     let thumbnailId = `thumbnail${counter}`;
                     let playerId = `player${counter}`;
@@ -361,7 +342,7 @@
                 let now = new Date();
 
                 if (now >= IMPLEMENTATED_DATETIME) {
-                    countdownHeader.textContent = "Machitan is available in the English version! 🥳🎉 Ei, ei, mun!";
+                    countdownHeader.textContent = "Machitan is available in the English version now! 🥳🎉 Ei, ei, mun!";
                     countdownElement.textContent = "";
                     return;
                 }

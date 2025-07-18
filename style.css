@@ -79,16 +79,8 @@ hr {
 }
 
 #implementation-container {
-    margin-bottom: 3rem;
-}
-
-#implementation-countdown {
+    margin-bottom: 64px;
     text-align: center;
-    font-size: 1.5rem;
-}
-
-#video-container {
-    display: none;
 }
 
 #video-title, #gallery-title {
@@ -106,7 +98,6 @@ hr {
     width: calc(80vw / 3 - 10px);
     height: calc((80vw / 3 - 10px) / 16 * 9);
     margin: 10px 5px 0 5px;
-    display: none;
 }
 
 .video-item > img {
@@ -267,7 +258,7 @@ hr {
         font-size: 2.5em;
     }
 
-    h2, #implementation-countdown {
+    h2 {
         font-size: 1.25em;
     }
 
