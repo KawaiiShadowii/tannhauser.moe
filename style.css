@@ -83,8 +83,9 @@ hr {
     text-align: center;
 }
 
-#video-title, #gallery-title {
+#video-subtitle, #gallery-subtitle {
     margin-bottom: 10px;
+    text-align: center;
 }
 
 #video-item-container {
