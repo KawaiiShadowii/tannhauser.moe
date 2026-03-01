@@ -105,7 +105,7 @@
                 "lve4fQCDkYM"
             ]
 
-            const IMPLEMENTATED_DATETIME = new Date("2026-03-13T22:00:00Z");
+            const IMPLEMENTATED_DATETIME = new Date("2026-03-12T22:00:00Z");
             //#endregion
 
             //#region Autostart
@@ -363,7 +363,7 @@
                 let minutes = Math.floor((input_seconds % (60 * 60)) / 60);
                 let seconds = Math.floor(input_seconds % 60);
 
-                return `${days} day${days === 1 ? '' : 's'}, ${hours} hour${hours === 1 ? '' : 's'}, ${minutes} minute${minutes === 1 ? '' : 's'}, ${seconds} second${seconds === 1 ? '' : 's'} (estimated)`;
+                return `${days} day${days === 1 ? '' : 's'}, ${hours} hour${hours === 1 ? '' : 's'}, ${minutes} minute${minutes === 1 ? '' : 's'}, ${seconds} second${seconds === 1 ? '' : 's'}`;
             }
             //#endregion
 
