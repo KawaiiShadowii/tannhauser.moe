@@ -50,6 +50,8 @@ hr {
     text-align: center; 
     font-weight: bold;
     margin: 64px 0;
+    position: relative;
+    z-index: 9999;
 }
 
 #counter-container > p {

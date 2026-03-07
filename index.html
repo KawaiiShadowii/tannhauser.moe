@@ -273,21 +273,22 @@
                 var elem = document.createElement("img");
                 elem.src = `img/ChibiTannhauser${random}.png`;
                 elem.style.position = "absolute";
-                elem.style.right = "-256px";
-                elem.style.top = counter_button.getClientRects()[0].bottom + scrollY - 256 + "px"
-                elem.style.zIndex = "-1";
+                elem.style.right = "-256px"; 
+                elem.style.top =   `${Math.floor(Math.random() * (window.innerHeight - 256))}px`; // offset so that mun isn't offscreen
+                elem.style.transform = `scaleX(${[-1,1][Math.floor(Math.random() * 2)]})`
+                elem.style.zIndex = "99";
                 document.body.appendChild(elem);
 
-                var pos = -256;
-                var limit = window.innerWidth + 256;
+                var scale = Number(String(elem.style.transform).replace("scaleX(", "").replace(")", "")); // there HAS to be a better way
+                var pos = (window.innerWidth / 2) - ((window.innerWidth / 2) + 256) * scale;
                 clearInterval(id);
                 id = setInterval(frame, 10);
                 function frame() {
-                    if (pos >= limit) {
+                    if (!(window.innerWidth + 256 >= pos && pos >= -256)) {
                     clearInterval(id);
                     elem.remove()
                     } else {
-                    pos += 20;
+                    pos += scale * 20; 
                     elem.style.right = pos + 'px'; 
                     }
                 }
