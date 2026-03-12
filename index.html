@@ -274,7 +274,7 @@
                 elem.src = `img/ChibiTannhauser${random}.png`;
                 elem.style.position = "absolute";
                 elem.style.right = "-256px"; 
-                elem.style.top =   `${Math.floor(Math.random() * (window.innerHeight - 256))}px`; // offset so that mun isn't offscreen
+                elem.style.top = `${Math.floor(Math.random() * (window.innerHeight - 256)) + scrollY}px`; // offset so that mun isn't offscreen
                 elem.style.transform = `scaleX(${[-1,1][Math.floor(Math.random() * 2)]})`
                 elem.style.zIndex = "99";
                 document.body.appendChild(elem);
