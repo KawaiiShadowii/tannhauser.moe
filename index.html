@@ -274,6 +274,13 @@
             function counterClick() {             
                 lastThreeSecondsCounter += 1;
                 visualCounter += 1;
+
+                if (visualCounter > counter + temporaryCounter + lastThreeSecondsCounter) {
+                    visualCounter = counter + temporaryCounter + lastThreeSecondsCounter;
+                }
+                
+                previousCounter = visualCounter;
+
                 counterElement.textContent = (Math.round(visualCounter)).toLocaleString();             
 
                 playMun();
