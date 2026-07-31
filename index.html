@@ -84,10 +84,19 @@
                 audio.preload = "auto";
             };
 
+            var counterElement = document.getElementById("counter");
+
             var counter = 0;
+            var previousCounter = 0;
             var lastThreeSecondsCounter = 0;
             var temporaryCounter = 0;
+            var visualCounter = 0;
+            var munsLess = false;
+            var munsLessCounter = 0;
             var firstSquish = true;
+
+            var updateTimeout = 3000;
+            var visualTimeout = 100;
 
             var grid_element = document.querySelector("#grid");
             var msnry;
@@ -123,23 +132,39 @@
                 loadImages();
                 removePreloads();
                 updateCountdown();
+                visualTick();
             }
 
             function squishMuns() {
                 setMunCounter();
-                setTimeout(squishMuns, 3000)
+                setTimeout(squishMuns, updateTimeout)
             }
 
             function setMunCounter() {
-                var counterElement = document.getElementById("counter");
-                
                 var req = new XMLHttpRequest();
                 req.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
                         var data = JSON.parse(this.responseText);
                         counter = data.muns;
                         temporaryCounter = 0;
-                        counterElement.textContent = (counter + lastThreeSecondsCounter).toLocaleString();
+
+                        if (visualCounter == 0) {
+                            visualCounter = data.muns;
+                        }
+                        
+                        previousCounter = visualCounter;
+
+                        if (munsLess) {
+                            munsLessCounter += 1
+                        } else {
+                            munsLessCounter = 0;
+                        }
+                        
+                        if (munsLessCounter >= 2) {
+                            munsLessCounter = 0
+                            previousCounter = counter;
+                            visualCounter = counter;
+                        }
                     }
                 }
 
@@ -246,10 +271,10 @@
             //#endregion
 
             //#region Counter Button
-            function counterClick() {
-                var counterElement = document.getElementById("counter");                
+            function counterClick() {             
                 lastThreeSecondsCounter += 1;
-                counterElement.textContent = (counter + lastThreeSecondsCounter + temporaryCounter).toLocaleString();             
+                visualCounter += 1;
+                counterElement.textContent = (Math.round(visualCounter)).toLocaleString();             
 
                 playMun();
                 animateTannhauser();
@@ -343,6 +368,23 @@
                 if (event.data == YT.PlayerState.ENDED) {
                     event.target.stopVideo();
                 }
+            }
+            //#endregion
+
+            //#region Visual updates
+            function visualTick() {
+                var deltaMuns = (counter + temporaryCounter + lastThreeSecondsCounter - previousCounter) / (updateTimeout / visualTimeout);
+
+                if (deltaMuns >= 0) {
+                    visualCounter += deltaMuns;
+                    munsLess = false;
+                } else {
+                    munsLess = true;
+                }
+
+                counterElement.textContent = (Math.round(visualCounter)).toLocaleString();
+
+                setTimeout(visualTick, 100);
             }
             //#endregion
 
