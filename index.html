@@ -97,6 +97,7 @@
 
             var updateTimeout = 3000;
             var visualTimeout = 100;
+            var lastVisualTime = null;
 
             var grid_element = document.querySelector("#grid");
             var msnry;
@@ -275,9 +276,7 @@
                 lastThreeSecondsCounter += 1;
                 visualCounter += 1;
 
-                if (visualCounter > counter + temporaryCounter + lastThreeSecondsCounter) {
-                    visualCounter = counter + temporaryCounter + lastThreeSecondsCounter;
-                }
+                clampVisualCounter();
                 
                 previousCounter = visualCounter;
 
@@ -380,10 +379,23 @@
 
             //#region Visual updates
             function visualTick() {
-                var deltaMuns = (counter + temporaryCounter + lastThreeSecondsCounter - previousCounter) / (updateTimeout / visualTimeout);
+                let realVisualTimeout = updateTimeout;
+                let curTime = Date.now();
+
+                if (lastVisualTime != null) {
+                    realVisualTimeout = curTime - lastVisualTime;
+                }
+
+                lastVisualTime = curTime;
+
+                var deltaMuns = (counter + temporaryCounter + lastThreeSecondsCounter - previousCounter) / (updateTimeout / realVisualTimeout);
+
 
                 if (deltaMuns >= 0) {
                     visualCounter += deltaMuns;
+
+                    clampVisualCounter();
+
                     munsLess = false;
                 } else {
                     munsLess = true;
@@ -392,6 +404,12 @@
                 counterElement.textContent = (Math.round(visualCounter)).toLocaleString();
 
                 setTimeout(visualTick, 100);
+            }
+
+            function clampVisualCounter() {
+                if (visualCounter > counter + temporaryCounter + lastThreeSecondsCounter) {
+                    visualCounter = counter + temporaryCounter + lastThreeSecondsCounter;
+                }
             }
             //#endregion
 
