@@ -403,7 +403,7 @@
 
                 counterElement.textContent = (Math.round(visualCounter)).toLocaleString();
 
-                setTimeout(visualTick, 100);
+                setTimeout(visualTick, visualTimeout);
             }
 
             function clampVisualCounter() {
